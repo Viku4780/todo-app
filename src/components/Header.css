@@ -1,0 +1,22 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+    align-items: center;
+    width: 100%;
+    padding: 0px clamp(20px,10vw + 20px, 200px);
+}
+
+.header .logo{
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.logo .logo-gray{
+    color: #ccc;
+}
+.logo .logo-orange{
+    color: rgb(234, 87, 13);
+}

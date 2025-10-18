@@ -1,0 +1,70 @@
+.todo-generator-container {
+    display: flex;
+    gap: clamp(5px, 2vw + 5px, 15px);
+    min-width: clamp(300px, 30vw + 200px, 1080px);
+    padding: 0px clamp(5px, 1vw, 20px);
+    align-items: center;
+    height: clamp(40px, 2vw + 32px, 70px);
+    justify-content: space-between;
+}
+
+.todo-generator-container input {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background-color: rgb(45, 42, 42);
+    border-radius: 10px;
+    height: 100%;
+    color: rgb(164, 161, 161);
+    font-size: clamp(1rem, 1vw + 0.8rem, 1.5rem);
+    width: 80%;
+    flex: 1 1 80%;
+}
+
+.todo-generator-container .add {
+    width: clamp(40px, 2vw + 32px, 70px);
+    background-color: rgb(234, 87, 13);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.add>* {
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.h-line {
+    width: 15px;
+    height: 3px;
+}
+
+.v-line {
+    width: 3px;
+    height: 15px;
+}
+
+.cancel {
+    width: clamp(40px, 2vw + 32px, 70px);
+    background-color: rgb(221, 41, 41);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    flex-shrink: 0;
+    transform-origin: 50% 50%;
+    transform: rotateZ(45deg);
+}
+
+.cancel>* {
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
