@@ -7,6 +7,8 @@ import { completedTodo } from './utilis/countTodo'
 import Header from './components/Header'
 import StarterSection from './components/StarterSection'
 import TodoInputContainer from './components/TodoInputContainer'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 
 export const TodoContext = createContext();
 
