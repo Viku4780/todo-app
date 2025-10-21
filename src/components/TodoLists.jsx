@@ -3,7 +3,7 @@ import './TodoLists.css'
 import PencilImage from '../assets/pencil.svg'
 import DeleteImage from '../assets/delete.svg'
 import axios from 'axios'
-import { TodoContext } from '../App'
+import { TodoContext } from '../pages/TodoPage'
 import { completedTodo } from '../utilis/countTodo'
 
 const TodoLists = () => {

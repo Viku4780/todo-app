@@ -1,9 +1,6 @@
-.todo-container {
+.login-sign-up-container{
     width: 100%;
-    min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
+    height: auto;
+    background: none;
+    border: 2px solid red;
 }
-

@@ -1,46 +1,71 @@
 .sign-up-container {
-    font-family: Arial;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    /* gap: 10px; */
-    position: relative;
+  font-family: Arial;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-evenly;
+  gap: 10px;
+  background-color: rgb(28, 2, 40);
+  color: rgb(201, 198, 198);
+  margin: 100px auto;
+  width: 60%;
+  border: 5px solid white;
 }
 
-.sign-up-container .login-sign-up .sign-up{
-  background-color: #e4e3e3;
-}
-
-.sign-up-container > h2{
+.sign-up-container>h2 {
   margin-top: 50px;
 }
-.sign-up-container > p{
-  color: #8a8989;
+
+.sign-up-container .login-para {
+  font-size: 10px;
+  color: #676565;
   font-size: 15px;
+  font-weight: 600;
+}
+
+.sign-up-container .login-para a {
+  color: #676565;
+  cursor: pointer;
 }
 
 
 .sign-up-container .form {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  column-gap: 15px;
+  row-gap: 30px;
   font-family: sans-serif;
   width: 60%;
+  flex-wrap: wrap;
 }
 
-.sign-up-container .form label {
-  font-weight: 600;
-  color: #333;
-  font-size: 10px;
+.form>div {
+  height: 50px;
+  border-radius: 6px;
+  background: rgba(106, 4, 98, 0.2);
 }
 
-.sign-up-container .form input{
+.form>div:focus-within {
+  border: 2px solid rgb(163, 158, 158);
+}
+
+.sign-up-container .form input {
   padding: 8px;
   outline: none;
   width: 100%;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 6px;
+  height: 100%;
+  background: none;
+  font-size: 18px;
+  color: rgb(191, 185, 185);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.form input::placeholder {
+  color: rgb(97, 95, 95);
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .sign-up-container .form p {
@@ -49,41 +74,47 @@
   margin: 2px 0 8px 0;
 }
 
-.sign-up-container .form .input-password{
-  position: relative;
+.form .input-name {
+  flex: 1;
 }
 
-.sign-up-container .form .show-hide{
+.form .input-lastName {
+  flex: 1;
+}
+
+.form .input-email {
+  width: 100%;
+}
+
+.sign-up-container .form .input-password {
+  position: relative;
+  width: 100%;
+}
+
+.sign-up-container .form .input-password input {
+  width: 90%;
+}
+
+.sign-up-container .form .show-hide {
   background: none;
   border: none;
   position: absolute;
-  top: 70%;
-  right: -15%;
+  top: 50%;
+  right: 0%;
   transform: translateX(-50%) translateY(-50%);
-}
-
-.sign-up-container .form .input-confirmPassword{
-  position: relative;
-}
-
-.sign-up-container .form .show-hide{
-  background: none;
-  border: none;
-  position: absolute;
-  top: 70%;
-  right: -15%;
-  transform: translateX(-50%) translateY(-50%);
+  filter: invert();
 }
 
 .sign-up-container .form .submit-btn {
-  background-color: black;
+  background-color: rgb(90, 4, 109);
   color: white;
-  font-size: 12px;
-  height: 30px;
+  font-size: 15px;
+  height: 50px;
   border: none;
   cursor: pointer;
   border-radius: 8px;
   margin-top: 10px;
+  width: 100%;
 }
 
 .sign-up-container .divider {
@@ -97,36 +128,28 @@
 
 .sign-up-container .sign-up-other-way {
   display: flex;
-  flex-direction: column;
+  width: 60%;
   gap: 10px;
   margin-bottom: 40px;
 }
 
 .sign-up-container .sign-up-other-way>div {
-  border: 1px solid #ccc;
+  border: 2px solid #676565;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
   color: rgb(81, 79, 79);
   padding: 5px 20px;
   cursor: pointer;
   border-radius: 5px;
+  flex: 1;
+  height: 50px;
 }
 
 .sign-up-container .sign-up-other-way>div img {
-  width: 15px;
-}
-
-.sign-up-container .sign-up-footer {
-  font-size: 10px;
-  position: absolute;
-  bottom: 20px;
-}
-
-.sign-up-container .sign-up-footer a{
-  color: black;
-  cursor: pointer;
+  width: 20px;
+  filter: invert();
 }

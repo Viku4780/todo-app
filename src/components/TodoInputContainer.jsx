@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './TodoInputContainer.css'
 import axios from 'axios'
-import { TodoContext } from '../App'
+import { TodoContext } from '../pages/TodoPage'
 
 const TodoInputContainer = () => {
     const { todos, setTodos, inputTodo, setInputTodo, isEditing, setIsEditing, editTodo,setEditTodo } = useContext(TodoContext);

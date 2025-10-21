@@ -5,7 +5,7 @@ import ShowIcon from '../assets/show.svg'
 import HideIcon from '../assets/hide.svg'
 import { useForm } from 'react-hook-form';
 import './LoginPage.css';
-import LoginSignUp from '../components/LoginSignUp'
+// import LoginSignUp from '../components/LoginSignUp'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -31,7 +31,7 @@ const LoginPage = () => {
     <div className='login-sign-up-container'>
 
       <div className='login-container'>
-        <LoginSignUp />
+        {/* <LoginSignUp /> */}
         <h2>Welcome!</h2>
         <p>Please enter your details to login</p>
 
@@ -90,7 +90,7 @@ const LoginPage = () => {
             <p>Continue with Twitter</p>
           </div>
         </div>
-        <p className="login-footer">Don't have an acount yet? <Link to="/api/register">Sign up</Link></p>
+        <p className="login-footer">Don't have an acount yet? <Link to="/register">Sign up</Link></p>
       </div>
       <div className='website-info'></div>
     </div>
