@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import './TodoInputContainer.css'
 import axios from 'axios'
-import { TodoContext } from '../pages/TodoPage'
+import { TodoContext } from '../utilis/TodoContext'
 
 const TodoInputContainer = () => {
-    const { todos, setTodos, inputTodo, setInputTodo, isEditing, setIsEditing, editTodo,setEditTodo } = useContext(TodoContext);
+    const { todos, setTodos, inputTodo, setInputTodo, isEditing, setIsEditing, editTodo, setEditTodo } = useContext(TodoContext);
 
     function handleChange(e) {
         setInputTodo(e.target.value)
@@ -14,12 +14,23 @@ const TodoInputContainer = () => {
         try {
             if (!isEditing) {
                 // Create new todo
-                const res = await axios.post("http://localhost:3000/api/todos", { todo: inputTodo });
-                // console.log(res.data.todo)
-                setTodos([...todos, res.data.todo]);
+                const res = await axios.post("http://localhost:3000/api/todos", { todo: inputTodo , completed: false }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+                console.log(res)
+                setTodos(prev => [...prev, res.data.createTodo]);
             } else {
                 // Edit existing todo
-                const res = await axios.put(`http://localhost:3000/api/todos/${editTodo._id}`, { todo: inputTodo });
+                const res = await axios.put(`http://localhost:3000/api/todos/${editTodo._id}`, { todo: inputTodo }, {
+                    headers: {
+
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
 
                 const updatedTodos = todos.map(item =>
                     item._id === editTodo._id ? res.data.todo : item

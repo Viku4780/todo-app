@@ -1,29 +1,30 @@
 import React, { useState } from 'react'
-// import LoginSignUp from '../components/LoginSignUp'
 import './SignUpPage.css'
 import { useForm } from 'react-hook-form'
 import ShowIcon from '../assets/show.svg'
 import HideIcon from '../assets/hide.svg'
 import GoogleImage from '../assets/google.svg'
 import TwitterImage from '../assets/twitter.svg'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from '../validations/validationSchema'
 import axios from 'axios'
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
-  const [isConfirm, setIsConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: yupResolver(schema)
   });
 
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/register", data);
-      console.log("Registration successful!");
+      const res = await axios.post("http://localhost:3000/api/users/register", data);
+      console.log("Registration successful!", res.data);
+      reset();
+      navigate("/login");
     } finally {
       setLoading(false);
     }
@@ -53,12 +54,10 @@ const SignUpPage = () => {
 
           <div className='input-lastName'>
             <input
-              type={isConfirm ? "text" : "password"}
+              type="text"
               placeholder='Last Name'
-              {...register("confirmPassword")}
+              {...register("lastName")}
             />
-
-            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
           </div>
 
           <div className="input-email">
@@ -85,10 +84,14 @@ const SignUpPage = () => {
             type="submit"
             className="submit-btn"
             disabled={loading}
-          >  {loading ? "Registering..." : "Register"}</button>
+          >
+            {loading ? "Registering..." : "Register"}
+          </button>
+
         </form>
 
         <div className="divider">
+          <div className="line"></div>
           <span>OR Register With</span>
         </div>
 
@@ -106,7 +109,7 @@ const SignUpPage = () => {
         </div>
 
       </div>
-      <div className='website-info'></div>
+      {/* <div className='website-info'></div> */}
     </div>
   )
 }

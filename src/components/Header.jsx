@@ -1,18 +1,32 @@
 import React from 'react'
 import './Header.css'
 import LogoutImage from '../assets/logout.svg'
+import { useNavigate } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({name}) => {
+  const navigate = useNavigate();
+
+  function logout(){
+    localStorage.removeItem("token");
+
+    return navigate("/login");
+  }
+
   return (
      <div className="header">
 
-        <div class="logo">
-          <span class="logo-gray">XERO</span>
-          <span class="logo-orange">TODO</span>
+        <div className="logo">
+          <span className="logo-gray">XERO</span>
+          <span className="logo-orange">TODO</span>
         </div>
 
         <div className="logout">
-          <img src={LogoutImage} alt="" />
+          <h3>{name}</h3>
+          <img 
+          src={LogoutImage} 
+          alt="logout" 
+          onClick={logout}
+          />
         </div>
       </div>
   )

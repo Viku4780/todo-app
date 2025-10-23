@@ -5,20 +5,22 @@ import ShowIcon from '../assets/show.svg'
 import HideIcon from '../assets/hide.svg'
 import { useForm } from 'react-hook-form';
 import './LoginPage.css';
-// import LoginSignUp from '../components/LoginSignUp'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const LoginPage = () => {
-  const [isShow, setIsShow] = useState(false);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [isShow, setIsShow] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/login", data);
-      console.log("Registration successful!", res.data);
+      const res = await axios.post("http://localhost:3000/api/users/login", data);
+      localStorage.setItem("token", res.data.token);
+      console.log("login successful!", res.data);
+      navigate("/");
     } catch (err) {
       console.error("Login failed", err);
       console.log(err.response?.data?.message || "Login failed. Please try again");
@@ -31,9 +33,9 @@ const LoginPage = () => {
     <div className='login-sign-up-container'>
 
       <div className='login-container'>
-        {/* <LoginSignUp /> */}
+
         <h2>Welcome!</h2>
-        <p>Please enter your details to login</p>
+        <p className="signUp-para">Don't have an acount yet? <Link to="/register">Sign up</Link></p>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -41,17 +43,17 @@ const LoginPage = () => {
         >
 
           <div className="input-email">
-            <label htmlFor="email">Email address</label>
+            {/* <label htmlFor="email">Email address</label> */}
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
               placeholder="Enter your email address"
             />
-          </div>
           {errors.email && <p>{errors.email.message}</p>}
+          </div>
 
           <div className="input-password">
-            <label htmlFor="password">Password</label>
+            {/* <label htmlFor="password">Password</label> */}
             <input
               type={isShow ? "text" : "password"}
               placeholder="Enter your password"
@@ -65,8 +67,8 @@ const LoginPage = () => {
             />
             <img src={isShow ? HideIcon : ShowIcon} onClick={() => setIsShow(!isShow)} alt={isShow ? "hide password" : "show password"} className="show-hide" />
 
-          </div>
           {errors.password && <p>{errors.password.message}</p>}
+          </div>
 
           <button
             type="submit"
@@ -76,6 +78,7 @@ const LoginPage = () => {
         </form>
 
         <div className="divider">
+          <div className="line"></div>
           <span>OR</span>
         </div>
 
@@ -83,14 +86,14 @@ const LoginPage = () => {
         <div className="login-other-way">
           <div>
             <img src={GoogleImage} alt="google" />
-            <p>Continue with Google</p>
+            <p>Google</p>
           </div>
           <div>
             <img src={TwitterImage} alt="twitter" />
-            <p>Continue with Twitter</p>
+            <p>Twitter</p>
           </div>
         </div>
-        <p className="login-footer">Don't have an acount yet? <Link to="/register">Sign up</Link></p>
+        
       </div>
       <div className='website-info'></div>
     </div>

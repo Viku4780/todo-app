@@ -1,26 +1,20 @@
 .sign-up-container {
-  font-family: Arial;
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: space-evenly;
+  justify-content: center;
   gap: 10px;
-  background-color: rgb(28, 2, 40);
   color: rgb(201, 198, 198);
-  margin: 100px auto;
-  width: 60%;
-  border: 5px solid white;
-}
-
-.sign-up-container>h2 {
-  margin-top: 50px;
+  width: 80%;
+  /* border: 1px solid white; */
+  height: 100%;
 }
 
 .sign-up-container .login-para {
-  font-size: 10px;
   color: #676565;
   font-size: 15px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .sign-up-container .login-para a {
@@ -34,7 +28,7 @@
   column-gap: 15px;
   row-gap: 30px;
   font-family: sans-serif;
-  width: 60%;
+  width: 100%;
   flex-wrap: wrap;
 }
 
@@ -58,7 +52,6 @@
   background: none;
   font-size: 18px;
   color: rgb(191, 185, 185);
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
 
@@ -120,17 +113,31 @@
 .sign-up-container .divider {
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   color: #999;
   font-weight: 500;
   font-size: 14px;
+  position: relative;
+  height: 30px;
+  width: 100%;
+}
+
+.divider .line {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(104, 102, 102);
+}
+
+.divider span {
+  position: absolute;
+  background-color: rgba(41, 7, 56, 1);
+  padding: 0px 10px;
 }
 
 .sign-up-container .sign-up-other-way {
   display: flex;
-  width: 60%;
+  width: 100%;
   gap: 10px;
-  margin-bottom: 40px;
 }
 
 .sign-up-container .sign-up-other-way>div {

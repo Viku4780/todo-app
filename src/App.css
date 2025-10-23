@@ -1,6 +1,107 @@
-.login-sign-up-container{
-    width: 100%;
-    height: auto;
-    background: none;
-    border: 2px solid red;
+.login-sign-up-container {
+    width: clamp(480px, 30vw + 336px, 35vw);
+    height: 80vh;
+    background-color: rgba(41, 7, 56);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 30px;
+}
+
+@media (max-width: 480px) {
+    .login-sign-up-container {
+        width: 100%;
+        font-size: 12px;
+        height: 100%;
+        font-size: clamp(12px, 2vw + 6px, 18px);
+    }
+
+    .sign-up-container {
+        width: 90%;
+    }
+
+    .sign-up-container .login-para {
+        font-size: clamp(10px, 2vw + 6px, 16px);
+    }
+
+    .sign-up-container .form {
+        width: 100%;
+    }
+
+    .sign-up-container .form input::placeholder {
+        font-size: clamp(10px, 2vw + 6px, 16px);
+    }
+
+    .sign-up-container .form>* {
+        height: clamp(2rem, 5vw + 1.5rem, 2.5rem);
+    }
+
+    .sign-up-container .form .input-name {
+        width: 100%;
+        flex: auto;
+    }
+
+    .sign-up-container .form .input-lastName {
+        width: 100%;
+    }
+
+    .sign-up-container .form .submit-btn {
+        height: clamp(2rem, 5vw + 1.5rem, 2.5rem);
+        font-size: clamp(10px, 2vw + 6px, 16px);
+    }
+
+    .sign-up-container .divider span {
+        font-size: 10px;
+    }
+
+    .sign-up-container .sign-up-other-way {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .login-container {
+        width: 90%;
+    }
+
+    .login-container .signUp-para {
+        font-size: clamp(10px, 2vw + 6px, 16px);
+    }
+
+    .login-container .form {
+        width: 100%;
+    }
+
+    .login-container .form input::placeholder {
+        font-size: clamp(10px, 2vw + 6px, 16px);
+    }
+
+    .login-container .form>* {
+        height: clamp(2rem, 5vw + 1.5rem, 2.5rem);
+    }
+
+    .login-container .form .submit-btn {
+        height: clamp(2rem, 5vw + 1.5rem, 2.5rem);
+        font-size: clamp(10px, 2vw + 6px, 16px);
+    }
+
+    .login-container .divider span {
+        font-size: 10px;
+    }
+
+    .login-container .login-other-way {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .logout h3{
+        display: none;
+    }
 }

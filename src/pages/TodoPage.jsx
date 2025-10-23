@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import LogoutImage from '../assets/logout.svg'
 import axios from 'axios'
 import TodoLists from '../components/TodoLists'
@@ -7,33 +7,60 @@ import Header from '../components/Header'
 import StarterSection from '../components/StarterSection'
 import TodoInputContainer from '../components/TodoInputContainer'
 import './TodoPage.css'
+import { useNavigate } from 'react-router-dom'
+import { TodoContext } from '../utilis/TodoContext'
 
-export const TodoContext = createContext();
-
-const TodoPage = () => {
+const TodoPage = ({name}) => {
+    const navigate = useNavigate();
     const [inputTodo, setInputTodo] = useState("");
     const [todos, setTodos] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [editTodo, setEditTodo] = useState(null);
     const [isCompleted, setIsCompleted] = useState(0);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get("http://localhost:3000/api/todos");
-            setTodos(res.data);
+        const token = localStorage.getItem("token");
 
-            completedTodo(res.data, setIsCompleted)
-        }
+        const fetchData = async () => {
+            try {
+                if (!token) {
+                    console.warn("No token found - redirecting to login");
+                    return navigate("/login");
+                }
+
+                const res = await axios.get("http://localhost:3000/api/todos", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                // console.log("Fetched todos:", res.data);
+                setTodos(res.data);
+
+                completedTodo(res.data, setIsCompleted)
+            } catch (error) {
+                console.error("Error fetching todos:", error.response?.data || error.message);
+               
+                if (error.response?.status === 401) {
+                    localStorage.removeItem("token");
+                    navigate("/login");
+                }
+            }
+            setLoading(false);
+        };
 
         fetchData();
 
-    }, []);
+    }, [navigate]);
+
+    if (loading) return <div>Loading...</div>;
 
     return (
         <div className='todo-container'>
 
-            <Header />
+            <Header name={name} />
 
             <StarterSection todos={todos} isCompleted={isCompleted} />
 

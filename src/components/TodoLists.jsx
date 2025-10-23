@@ -3,27 +3,34 @@ import './TodoLists.css'
 import PencilImage from '../assets/pencil.svg'
 import DeleteImage from '../assets/delete.svg'
 import axios from 'axios'
-import { TodoContext } from '../pages/TodoPage'
+import { TodoContext } from '../utilis/TodoContext'
 import { completedTodo } from '../utilis/countTodo'
 
 const TodoLists = () => {
-    const { todos, setTodos, setInputTodo, setIsEditing, setEditTodo,setIsCompleted } = useContext(TodoContext);
+    const { todos, setTodos, setInputTodo, setIsEditing, setEditTodo, setIsCompleted } = useContext(TodoContext);
+
 
     function updateTodo(data) {
-            // const todo = todos.findOne({ _id: data._id }); we can not use because it is a built in method for mongoDB not general js array method thats why here we are going to use find()
-            const list = todos.find(item => item._id === data._id);
-            setInputTodo(list.todo);
-            setIsEditing(true);
-            setEditTodo(list);
+        // const todo = todos.findOne({ _id: data._id }); we can not use because it is a 
+        // built in method for mongoDB not general js array method thats why here we are going to use find()
+        const list = todos.find(item => item._id === data._id);
+        setInputTodo(list.todo);
+        setIsEditing(true);
+        setEditTodo(list);
     }
 
     async function deleteTodo(data) {
         try {
-            await axios.delete(`http://localhost:3000/api/todos/${data._id}`);
+            await axios.delete(`http://localhost:3000/api/todos/${data._id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             const deletedTodo = todos.filter(item => item._id !== data._id)
             setTodos(deletedTodo);
 
-            completedTodo(deletedTodo,setIsCompleted);
+            completedTodo(deletedTodo, setIsCompleted);
         } catch (err) {
             console.error(err);
         }
@@ -36,10 +43,15 @@ const TodoLists = () => {
         );
         setTodos(updatedTodos);
 
-        completedTodo(updatedTodos,setIsCompleted);
+        completedTodo(updatedTodos, setIsCompleted);
 
         axios.put(`http://localhost:3000/api/todos/${data._id}`, {
             completed: !data.completed
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
         });
     }
 
@@ -53,11 +65,11 @@ const TodoLists = () => {
 
                     <div className="list">
                         <div
-                            className={item.completed ? "circle green" : "circle"}
+                            className={item?.completed ? "circle green" : "circle"}
                             onClick={() => toggleComplete(item)}
                         ></div>
                         <p
-                        className={item.completed ? "line-through" : ""}
+                            className={item.completed ? "line-through" : ""}
                         >{item.todo}</p>
                     </div>
 

@@ -20,3 +20,14 @@
 .logo .logo-orange{
     color: rgb(234, 87, 13);
 }
+
+.logout{
+    display: flex;
+    color: rgb(234, 214, 187);
+    align-items: center;
+    gap: clamp(5px, 1vw + 5px,20px);
+}
+
+.logout img{
+    cursor: pointer;
+}
